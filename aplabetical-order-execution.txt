@@ -1,0 +1,35 @@
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------PSQL COMMAND TO EXECUTE THE FILES IN ORDER -----------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+
+.sh /  batch.sh ---- file name in the directory
+for %%G in (*.sql) do sqlcmd /S servername /d databaseName -U username -P "password" -i"%%G" 
+
+.sh file to execute the sql files in alphabetical order
+for /F %%X in ('dir /b /ON *.sql') do SQLCMD -S ServerName -d DatabasesName -U UserName -P UserPassword -I -i "%%X" > %%X.txt
+
+................................X.......................................X...............................X........................
+
+Suppose you have four .sql files (script1.sql,script2.sql,script3.sql,script4.sql) in a folder c:\scripts.
+
+Create a main script file (Main.sql) with the following:
+
+:r c:\Scripts\script1.sql
+:r c:\Scripts\script2.sql
+:r c:\Scripts\script3.sql
+:r c:\Scripts\script4.sql
+Save the Main.sql in c:\scripts itself.
+
+Create a batch file named ExecuteScripts.bat with the following:
+
+SQLCMD -E -d<YourDatabaseName> -ic:\Scripts\Main.sql
+PAUSE
+Remember to replace <YourDatabaseName> with the database you want to execute your scripts. For example, if the database is "Employee", the command would be the following:
+
+SQLCMD -E -dEmployee -ic:\Scripts\Main.sql
+PAUSE
+Execute the batch file by double clicking the same.
+
+..........................X.....................................X..................................X..............................
+cd /var/lib/jenkins/workspace/$JOB_NAME
+psql -h localhost -d userstoreis -U admin -p 5432 -a -q -f /var/lib/jenkins/workspace/$JOB_NAME/*.sql -o /home/$BUILD_NUMBER.txt
