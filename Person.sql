@@ -1,3 +1,23 @@
+\pset tuples_only on
+
+-- Support to auto-generate UUIDs (aka GUIDs)
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Support crosstab function to do PIVOT thing for Sales.vSalesPersonSalesByFiscalYears
+CREATE EXTENSION tablefunc;
+
+-------------------------------------
+-- Custom data types
+-------------------------------------
+
+CREATE DOMAIN "OrderNumber" varchar(25) NULL;
+CREATE DOMAIN "AccountNumber" varchar(15) NULL;
+
+CREATE DOMAIN "Flag" boolean NOT NULL;
+CREATE DOMAIN "NameStyle" boolean NOT NULL;
+CREATE DOMAIN "Name" varchar(50) NULL;
+CREATE DOMAIN "Phone" varchar(25) NULL;
+
 CREATE SCHEMA Person
   CREATE TABLE BusinessEntity(
     BusinessEntityID SERIAL, --  NOT FOR REPLICATION
