@@ -1,4 +1,4 @@
-\pset tuples_only on
+pset tuples_only on
 
 -- Support to auto-generate UUIDs (aka GUIDs)
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
