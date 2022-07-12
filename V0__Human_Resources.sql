@@ -18,7 +18,6 @@ CREATE DOMAIN "NameStyle" boolean NOT NULL;
 CREATE DOMAIN "Name" varchar(50) NULL;
 CREATE DOMAIN "Phone" varchar(25) NULL;
 
-CREATE SCHEMA HumanResources
   CREATE TABLE Department(
     DepartmentID SERIAL NOT NULL, -- smallint
     Name "Name" NOT NULL,
